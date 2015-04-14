@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+    ServerName ibeacons.wirover.com
+
+    WSGIDaemonProcess ibeacons user=wirover group=wirover threads=5
+    WSGIScriptAlias / /var/www/ibeacons/flask_app.wsgi
+
+    <Directory /var/www/ibeacons>
+        WSGIProcessGroup ibeacons
+        WSGIApplicationGroup %{GLOBAL}
+        Order deny,allow
+        Allow from all
+    </Directory>
+</VirtualHost>
